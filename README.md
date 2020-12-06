@@ -4,6 +4,9 @@
 
 ## Необходимые вещи для запуска фронта:
 
+## node-modules
+npm install (запускать из папки frontend)
+
 ## vue.js
 npm install vue
 
