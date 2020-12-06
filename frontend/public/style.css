@@ -1,0 +1,67 @@
+body {
+    background-image: url(back.jpg);
+}
+
+.offers_text {
+    margin-bottom: 4%;
+    text-transform: uppercase;
+    color: white;
+} 
+
+.text {
+    margin: 5% auto auto 13%;
+    text-transform: uppercase;
+    margin-top: -2%;
+}
+
+.form_reg {
+    background-color: whitesmoke;
+    padding: 50px;
+    margin-top: 5%;
+    border-radius: 15px;
+}
+
+.slider {
+    margin-top: 5%;
+    border-radius: 5px;
+}
+
+.buttons {
+    margin: 3% auto auto 30%;
+}
+
+.button1 {
+    margin-bottom: 2%;
+}
+
+.offer_button {
+    margin: 3% auto auto 38%;
+}
+
+.custom-container {
+    text-transform: uppercase;
+}
+
+.a {
+    position: relative;
+    cursor: pointer;
+    line-height: 2; /*задаём высоту строки*/
+    text-decoration: none; /*убираем подчёркивание*/
+    
+}
+
+    .a:after {
+        display: block;
+        position: absolute;
+        left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+        width: 0; /*задаём длинну линии до наведения курсора*/
+        height: 3px; /*задаём ширину линии*/
+        background-color: #0094ff; /*задаём цвет линии*/
+        content: "";
+        transition: width 0.3s ease-out; /*задаём время анимации*/
+    }
+
+    .a:hover:after,
+    .a:focus:after {
+        width: 100%;
+    }
