@@ -19,9 +19,9 @@ npm install bootstrap-vue
 ## popper
 npm i @popperjs/core
 
-##portal-vue
+## portal-vue
 npm install --save portal-vue
 
-##команда для запуска сервера и деплоя проекта
+## команда для запуска сервера и деплоя проекта
 npm run serve
 ```
