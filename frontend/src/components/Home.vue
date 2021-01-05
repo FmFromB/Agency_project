@@ -26,6 +26,14 @@
         <h1>Text</h1>
       </b-carousel-slide>
     </b-carousel>
+    <b-card-group deck="">
+      <b-card>
+        <b-card-text>
+          Краткая инфа про компанию
+        </b-card-text>
+      </b-card>
+    </b-card-group>
+    
   </div>
 </template>
 

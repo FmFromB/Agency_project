@@ -4,7 +4,14 @@ import Offers from './components/Offers'
 import Requirements from './components/Requirements'
 import Registration from './components/Registration'
 import Enterance from './components/Enterance'
-
+import NewOffersFlats from './components/NewOffersFlats'
+import NewOffersHouses from './components/NewOffersHouses'
+import NewOffersLands from './components/NewOffersLands'
+import NewReqFlats from './components/NewReqFlats'
+import NewReqHouses from './components/NewReqHouses'
+import NewReqLands from './components/NewReqLands'
+import RegistrateOffer from './components/RegistrateOffer'
+import RegistrateReq from './components/RegistrateReq'
 
 export default new VueRouter({
 	routes: [
@@ -31,8 +38,40 @@ export default new VueRouter({
 		{
 			path: '/Enterance',
 			component: Enterance
+		},
+		{
+			path: '/NewOffersFlats',
+			component: NewOffersFlats
+		},
+		{
+			path: '/NewOffersHouses',
+			component: NewOffersHouses
+		},
+		{
+			path: '/NewOffersLands',
+			component: NewOffersLands
+		},
+		{
+			path: '/NewReqFlats',
+			component: NewReqFlats
+		},
+		{
+			path: '/NewReqHouses',
+			component: NewReqHouses
+		},
+		{
+			path: '/NewReqLands',
+			component: NewReqLands
+		},
+		{
+			path: '/RegistrateOffer',
+			component: RegistrateOffer
+		},
+		{
+			path: '/RegistrateReq',
+			component: RegistrateReq
 		}
 	],
-	// Отключение хэша
+	// РЈРґР°Р»РµРЅРёРµ С…СЌС€Р°
 	mode: 'history'
 })

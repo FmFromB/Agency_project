@@ -25,7 +25,7 @@
           <b-form-checkbox value="me">Запомнить меня</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="dark">Войти</b-button>
     </b-form>
   </div>
 </template>

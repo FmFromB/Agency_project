@@ -3,7 +3,8 @@ body {
 }
 
 .offers_text {
-    margin-bottom: 4%;
+    margin-top: 3%;
+    margin-bottom: 2%;
     text-transform: uppercase;
     color: white;
 } 
@@ -45,23 +46,34 @@ body {
 .a {
     position: relative;
     cursor: pointer;
-    line-height: 2; /*задаём высоту строки*/
-    text-decoration: none; /*убираем подчёркивание*/
+    line-height: 2; /*пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/
+    text-decoration: none; /*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
     
 }
 
     .a:after {
         display: block;
         position: absolute;
-        left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
-        width: 0; /*задаём длинну линии до наведения курсора*/
-        height: 3px; /*задаём ширину линии*/
-        background-color: #0094ff; /*задаём цвет линии*/
+        left: 0; /*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ right:0;, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
+        width: 0; /*пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
+        height: 3px; /*пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
+        background-color: #0094ff; /*пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
         content: "";
-        transition: width 0.3s ease-out; /*задаём время анимации*/
+        transition: width 0.3s ease-out; /*пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
     }
 
     .a:hover:after,
     .a:focus:after {
         width: 100%;
     }
+
+
+.slide-fade-enter-active {
+    transition: all 1s ease;
+}
+
+.slide-fade-enter {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
