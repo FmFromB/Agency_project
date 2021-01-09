@@ -1,8 +1,17 @@
 from django.urls import path, include
+#from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.contrib.auth import views
 from .views import *
 
 urlpatterns = [
+    #Auth urls
+    path('auth/', include('djoser.urls')),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    #path('auth/token', ObtainAuthToken, name='token'),
+    #path('auth/logout', Logout.as_view())
+
     #Client urls
     path('clients/<int:pk>', ClientRetrieveView.as_view()),
     path('clients/update/<int:pk>', ClientUpdateView.as_view()),

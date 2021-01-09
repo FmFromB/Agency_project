@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import jwt
 import sys
 import os
 import psycopg2
@@ -72,6 +73,20 @@ CORS_ALLOW_METHODS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000"
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [ 
+         'rest_framework.permissions.IsAuthenticated',
+     ],
+     "DEFAULT_PARSER_CLASSES": [
+         "rest_framework.parsers.JSONParser", 
+     ],
+     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        'rest_framework.authentication.TokenAuthentication',
+        "rest_framework_simplejwt.authentication.JWTAuthentication"
+     ],
+ }
 
 ROOT_URLCONF = 'backend.urls'
 
