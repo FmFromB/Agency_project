@@ -3,6 +3,10 @@
     <form @submit.prevent="register">
       <div v-show="step === 1" class="step custom-container col-sm-5 mx-auto">
         <div class="form-group">
+          <label for="name">Цена</label>
+          <input v-model="formReg.price" type="text" class="form-control" id="name"/>
+        </div>
+        <div class="form-group">
           <label for="name">Адрес</label>
           <input v-model="formReg.adress" type="text" class="form-control" id="name"/>
         </div>
@@ -45,6 +49,7 @@
             return {
                 step: 1,
                 formReg: {
+                    price: '',
                     adress: '',
                     floor: '',
                     area: '',

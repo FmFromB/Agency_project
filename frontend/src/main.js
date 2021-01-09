@@ -7,10 +7,10 @@ import VueRouter from 'vue-router'
 import router from './router'
 import store from './store'
 import Vuelidate from 'vuelidate'
-import firebase from "firebase/app"
-import firebaseConfig from './config/firebase'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-Vue.use(firebase)
+Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
 Vue.use(LayoutPlugin)
 Vue.use(PortalVue)
@@ -19,10 +19,10 @@ Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
-firebase.initializeApp(firebaseConfig);
 
 new Vue({
     render: h => h(App),
     store,
     router,
+    axios
 }).$mount('#app')

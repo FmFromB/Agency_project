@@ -9,7 +9,7 @@ class Client(models.Model):
     password = models.CharField('Пароль', max_length=150, blank=True, null=True)
 
     def __str__(self):
-        return "Client: {}, email: {}".format(self.first_name, self.email)
+        return "Phone: {}, email: {}".format(self.phone_number, self.email)
 
 
 class Realtor(models.Model):

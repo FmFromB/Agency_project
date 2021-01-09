@@ -3,6 +3,14 @@
     <form @submit.prevent="register">
       <div v-show="step === 1" class="step custom-container col-sm-5 mx-auto">
         <div class="form-group">
+          <label for="name">Минимальная цена</label>
+          <input v-model="formReg.minPrice" type="text" class="form-control" id="name"/>
+        </div>
+        <div class="form-group">
+          <label for="name">Максимальная цена</label>
+          <input v-model="formReg.maxPrice" type="text" class="form-control" id="name"/>
+        </div>
+        <div class="form-group">
           <label for="name">Минимальная площадь</label>
           <input v-model="formReg.minArea" type="text" class="form-control" id="name"/>
         </div>
@@ -66,6 +74,8 @@
                     minNumFloors: '',
                     maxNumFloors: '',
                     type: '',
+                    minPrice: '',
+                    maxPrice: '',
                 }
             }
         },
