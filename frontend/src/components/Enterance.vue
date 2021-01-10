@@ -1,9 +1,9 @@
 <template>
-    <div class="mx-auto border p-3 rounded custom-container light">
+    <div class="mx-auto border p-3 rounded form_reg light">
         <b-form @submit="login">
             <div class="form-group">
-                <label for="username">Email:</label>
-                <b-input v-model="email" type="text" id="username" placeholder="example@mail.com"></b-input>
+                <label for="username">Логин</label>
+                <b-input v-model="username" type="text" id="username" placeholder="Логин"></b-input>
             </div>
             <div class="form-group">
                 <label for="password">Пароль:</label>
@@ -21,9 +21,7 @@
         name: "SignIn",
         data() {
             return {
-
-
-                email: "",
+                username: "",
                 password: ""
             };
         },
@@ -31,11 +29,14 @@
             login(event) {
                 event.preventDefault();
                 this.axios
-                    .post(`http://localhost:8000/api/auth/token/`, { 'email': this.email, 'password': this.password })
+                    .post(`http://localhost:8000/api/token/`, { 'username': this.username, 'password': this.password })
                     .then(response => { this.setLogined(response.data.token) })
                     .catch(err => { console.error(err) })
-                // логика авторизации
             },
+            setLogined(token) {
+                console.log(token);
+                localStorage.setItem('token', token);
+            }
         }
     };
 </script>

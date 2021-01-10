@@ -1,5 +1,5 @@
 <template>
-    <div class="border rounded p-3 mx-auto custom-container">
+    <div class="border rounded p-3 mx-auto form_reg">
         <b-form @submit="register">
             <div class="form-group">
                 <label for="first_name">Имя</label>
@@ -16,6 +16,10 @@
             <div class="form-group">
                 <label for="phone_number">Номер телефона:</label>
                 <b-input v-model="phone_number" type="text" id="phone_number" placeholder="+7 (921) 123 45 67"></b-input>
+            </div>
+            <div class="form-group">
+                <label for="username">Логин</label>
+                <b-input v-model="username" type="text" id="username" placeholder="логин"></b-input>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -41,6 +45,7 @@
         name: "SignUp",
         data() {
             return {
+                username: "",
                 first_name: "",
                 last_name: "",
                 middle_name: "",
@@ -54,7 +59,7 @@
             register(event) {
                 event.preventDefault();
                 this.axios
-                    .post(`http://127.0.0.1:8000/api/auth/users/`, { 'username': this.first_name, 'password': this.password, 'email': this.email })
+                    .post(`http://127.0.0.1:8000/api/auth/users/`, { 'username': this.username, 'password': this.password, 'email': this.email })
                     .then(response => { console.log(response); this.setLogined(response.data.token) })
                     .catch(err => { console.error(err) }) 
                 // логика регистрации

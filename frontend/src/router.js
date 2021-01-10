@@ -10,8 +10,12 @@ import NewOffersLands from './components/NewOffersLands'
 import NewReqFlats from './components/NewReqFlats'
 import NewReqHouses from './components/NewReqHouses'
 import NewReqLands from './components/NewReqLands'
-import RegistrateOffer from './components/RegistrateOffer'
-import RegistrateReq from './components/RegistrateReq'
+import AddNewOffersLands from './components/AddNewOffersLands'
+import AddNewOfferHouse from './components/AddNewOfferHouse'
+import AddNewOfferFlat from './components/AddNewOfferFlat'
+import AddNewReqFlat from './components/AddNewReqFlat'
+import AddNewReqLand from './components/AddNewReqLand'
+import AddNewReqHouse from './components/AddNewReqHouse'
 
 export default new VueRouter({
 	routes: [
@@ -64,12 +68,28 @@ export default new VueRouter({
 			component: NewReqLands
 		},
 		{
-			path: '/RegistrateOffer',
-			component: RegistrateOffer
+			path: '/AddNewOffersLands',
+			component: AddNewOffersLands
 		},
 		{
-			path: '/RegistrateReq',
-			component: RegistrateReq
+			path: '/AddNewOfferHouse',
+			component: AddNewOfferHouse
+		},
+		{
+			path: '/AddNewOfferFlat',
+			component: AddNewOfferFlat
+		},
+		{
+			path: '/AddNewReqFlat',
+			component: AddNewReqFlat
+		},
+		{
+			path: '/AddNewReqLand',
+			component: AddNewReqLand
+		},
+		{
+			path: '/AddNewReqHouse',
+			component: AddNewReqHouse
 		}
 	],
 	// Удаление хэша
