@@ -50,26 +50,27 @@
     </nav>
     <div class="container mt-4">
         {%block content%}
-        <h1 class="mb-4">Предложения</h1>
+        <h1 class="mb-4">Запросы</h1>
 
         <ul class="nav nav-pills mb-4">
             <li class="nav-item">
 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/add_offer">редактировать/удалить предложение</a>
+                <a class="nav-link" href="/add_req">редактировать/удалить запросы</a>
             </li>
         </ul>
 
-        {%for i in offers%}
+        {%for i in reqs%}
         <ul class="list-group mt-4 ">
-
             <li class="list-group-item">
-                <b>{{i.address}}</b>
-                <span class="m-2">{{i.property_type}}</span>
-                <span class="me-2">{{i.price}}</span>
-                <span>Автор обьявления: {{i.author}}, {{i.author.type}}</span>
-                <span class="float-end me-1"><a href="/detail/{{i.id}}">Перейти</a></span>
+                <b class="m-2">{{i.property_type}}</b>
+                <span>Мин. цена: {{i.min_price}}</span>
+                <span>Макс. цена: {{i.max_price}}</span>
+                <span> Мин. площадь: {{i.min_area}}</span>
+                <span>Макс. площадь: {{i.max_area}}</span>
+                <span>{{i.author}}, {{i.author.type}}</span>
+                <span class="float-end me-1"><a href="/detail_req/{{i.id}}">Перейти</a></span>
             </li>
         </ul>
         {%endfor%}

@@ -1,4 +1,4 @@
-{% extends 'offers.html' %}
+{% extends 'reqs.html' %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">STORMWIND</a>
@@ -37,9 +37,9 @@
 </nav>
 {%block content%}
 <h1 class="mg-4">Добавление</h1>
-<p><a href="/offers">Назад</a></p>
+<p><a href="/reqs">Назад</a></p>
 <button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Добавить предложение
+    Добавить запрос
 </button>
 {% if success %}
 <p style="color:green">Предложение добавлено</p>
@@ -56,31 +56,33 @@
 <p style="color:green">Предложение обновлено</p>
 {% endif %}
 <h2>Редактирование предложения</h2>
-<form id="update_offer" method="post">
+<form id="update_req" method="post">
     {% csrf_token %}
     {{form}}
 </form>
-<button form="update_offer" type="submit" class="btn btn-dark mt-4">Обновить</button>
+<button form="update_req" type="submit" class="btn btn-dark mt-4">Обновить</button>
 {% else %}
 <table class="table table-bordered mg-4">
     <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">Адрес</th>
-            <th scope="col">Цена</th>
+            <th scope="col">Тип собственности</th>
+            <th scope="col">Минимальная цена</th>
+            <th scope="col">Максимальная цена</th>
             <th scope="col">Редактирование</th>
             <th scope="col">Удаление</th>
         </tr>
     </thead>
     <tbody>
-        {% for i in list_offers%}
+        {% for i in list_req%}
         <tr>
             <th>{{i.id}}</th>
-            <td>{{i.address}} - {{i.author}}</td>
-            <td>{{i.price}}</td>
-            <td><a href="{% url 'update_offer' i.id %}">Редактировать</a></td>
+            <td>{{i.property_type}}</td>
+            <td>{{i.min_price}}</td>
+            <td>{{i.max_price}}</td>
+            <td><a href="{% url 'update_req' i.id %}">Редактировать</a></td>
             <td>
-                <form id="delete_form_{{i.id}}" action="{% url 'delete_offer' i.id %}" method="post">{% csrf_token %}</form>
+                <form id="delete_form_{{i.id}}" action="{% url 'delete_req' i.id %}" method="post">{% csrf_token %}</form>
                 <a href="javascript:void()" onclick="delete_question_{{i.id}}()">удалить</a>
                 <script>
                     function delete_question_{{i.id}}() {
@@ -99,7 +101,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Добавить предложение</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Добавить  запрос</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

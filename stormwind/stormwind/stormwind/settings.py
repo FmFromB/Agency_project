@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'stormwind.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'stormwind_agency2',
+        'NAME': 'stormwind_new',
         'USER': 'postgres',
         'PASSWORD': '12828',
         'HOST': 'localhost',
@@ -125,3 +125,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = 'login_page'
