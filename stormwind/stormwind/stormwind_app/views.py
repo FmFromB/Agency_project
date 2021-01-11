@@ -137,7 +137,7 @@ class ReqsDeleteView(DeleteView):
         self.object = self.get_object()
         if self.request.user !=  self.object.author:
             return self.handle_no_permission()
-        success_url = self.get_succes_url()
+        success_url = self.get_success_url()
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
