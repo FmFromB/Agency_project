@@ -15,41 +15,44 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light border_nav">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">STORMWIND</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse custom_container" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item ms-4 me-4">
-                        <a class="nav-link" href="/offers">Offers</a>
-                    </li>
-                    <li class="nav-item ms-4 me-4">
-                        <a class="nav-link" href="/reqs">Requirements</a>
-                    </li>
-                    {% if request.user.is_authenticated %}
-                    <li class="nav-item ms-4 me-4">
-                        <a class="nav-link">{{request.user}}, {{request.user.type}}</a>
-                    </li>
-                    <li class="nav-item ms-4 me-4">
-                        {% url 'logout_page' as url_logout_page %}
-                        <a class="nav-link" href="{{url_logout_page}}">Log out</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item ms-4 me-4">
-                        {% url 'login_page' as url_login_page %}
-                        <a class="nav-link" href="{{url_login_page}}">Sign in</a>
-                    </li>
-                    <li class="nav-item ms-4 me-4">
-                        {% url 'register_page' as url_register_page %}
-                        <a class="nav-link" href="{{url_register_page}}">Sign up</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">STORMWIND</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse custom_container" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ms-4 me-4">
+                    <a class="nav-link" href="/offers">Offers</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    <a class="nav-link" href="/reqs">Requirements</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    <a class="nav-link" href="/clients">Clients</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item ms-4 me-4">
+                    <a class="nav-link">{{request.user}}</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    {% url 'logout_page' as url_logout_page %}
+                    <a class="nav-link" href="{{url_logout_page}}">Log out</a>
+                </li>
+                {% else %}
+                <li class="nav-item ms-4 me-4">
+                    {% url 'login_page' as url_login_page %}
+                    <a class="nav-link" href="{{url_login_page}}">Sign in</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    {% url 'register_page' as url_register_page %}
+                    <a class="nav-link" href="{{url_register_page}}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
     <div class="container mt-4">
         {%block content%}
         <h1 class="mb-4">Предложения</h1>
@@ -74,11 +77,10 @@
                     <h3 class="mb-1">{{i.address}}, {{i.property_type}}</h3>
                     <small></small>
                 </div>
-                <h5 class="mb-1 mt-1">Цена {{i.price}}</h5>
+                <h5 class="mb-1 mt-1">Цена {{i.price}}, цена с учетом процентов: {{i.price_percent}}</h5>
                 <h5 class="mb-1 mt-1">Площадь {{i.area}} кв.м</h5>
                 <h6 class="mb-1 mt-1">Автор обьявления: {{i.author}}, {{i.author.type}}</h6>
             </a>
-
         </div>
         {%endfor%}
         {%endblock content%}

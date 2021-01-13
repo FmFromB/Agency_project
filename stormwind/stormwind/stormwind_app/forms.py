@@ -21,6 +21,24 @@ class ReqForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
 
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('first_name', 'last_name', 'middle_name', 'phone', 'email')
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+class RealtorForm(forms.ModelForm):
+    class Meta:
+        model = Realtor
+        fields = ('first_name', 'last_name', 'middle_name', 'commission')
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
     class Meta:
         model = User

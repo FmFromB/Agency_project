@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
  {% load static %}
 <html lang="ru">
 <head>
@@ -53,14 +53,34 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-4 text_upper">
-        <h1>Адрес: {{get_offer.address}}</h1>
-        <h3 class="mt-4">Вид собственности: {{get_offer.property_type}}</h3>
-        <h5 class="mt-4">Цена: {{get_offer.price}}</h5>
-        <h5>Площадь: {{get_offer.area}}</h5>
-        <h5>Этаж: {{get_offer.floor}}</h5>
-        <h5>Количество комнат: {{get_offer.rooms}}</h5>
-        <h5>Количество этажей: {{get_offer.floor_count}}</h5>
-        <a class="rounded nav-link btn-secondary" href="/offers">Назад</a>
+    <div class="container mt-4">
+        {%block content%}
+        <h1 class="mb-4">Realtor</h1>
+        <ul class="nav nav-pills mb-4">
+            <li class="nav-item">
+
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link btn-secondary" href="/add_realtor">Add realtor</a>
+            </li>
+            {% else %}
+            <a class="nav-link btn-secondary" href="/login_page">
+                To add and edit offers enter
+            </a>
+            {% endif %}
+        </ul>
+        {%for i in realtors%}
+        <div class="list-group  mt-4">
+
+            <a href="/detail_realtor/{{i.id}}" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h3 class="mb-1">{{i.first_name}} {{i.last_name}} {{i.middle_name}}</h3>
+                </div>
+                <h5 class="mb-1 mt-1"> {{i.commission}}</h5>
+            </a>
+        </div>
+        {%endfor%}
+        {%endblock content%}
     </div>
 </body>

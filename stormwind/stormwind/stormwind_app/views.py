@@ -23,10 +23,144 @@ class HomeListView(ListView):
     template_name = 'home.html'
     context_object_name = 'home'
 
+## Client classess
+class СlientListView(ListView):
+    model = Client
+    template_name = 'clients.html'
+    context_object_name = 'clients'
+    def get_context_data(self, **kwargs):
+        kwargs['list_clients'] = Offer.objects.all().order_by('-id')
+        return super().get_context_data(**kwargs)
+
+class ClientsDetailView(DetailView):
+    model = Client
+    template_name = 'detail_client.html'
+    context_object_name = 'get_client'
+
+class ClientCreateView(LoginRequiredMixin, SuccessMessage, CreateView):
+    model = Client
+    template_name = 'add_client.html'
+    form_class = ClientForm
+    success_url = reverse_lazy('add_client')
+    success_msg = 'Клиент_добавлен'
+    def get_context_data(self, **kwargs):
+        kwargs['list_clients'] = Client.objects.all().order_by('-id')
+        return super().get_context_data(**kwargs)
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
+class ClientUpdateView(LoginRequiredMixin, UpdateView):
+    model = Client
+    template_name = 'add_client.html'
+    form_class = ClientForm
+    success_url = reverse_lazy('clients')
+    def get_context_data(self, **kwargs):
+        kwargs['update'] = True
+        return super().get_context_data(**kwargs)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.request.user != kwargs['instance'].author:
+            return self.handle_no_permission()
+        return kwargs
+
+class ClientDeleteView(LoginRequiredMixin, DeleteView):
+    model = Client
+    template_name = 'add_client.html'
+    success_url = reverse_lazy('add_client')
+    def get_context_data(self, **kwargs):
+        kwargs['update'] = True
+        return super().get_context_data(**kwargs)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.request.user != kwargs['instance'].author:
+            return self.handle_no_permission()
+        return kwargs
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.request.user !=  self.object.author:
+            return self.handle_no_permission()
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+#***********************
+#Realtor classess
+
+class RealtorListView(ListView):
+    model = Realtor
+    template_name = 'realtors.html'
+    context_object_name = 'realtors'
+    def get_context_data(self, **kwargs):
+        kwargs['list_realtors'] = Realtor.objects.all().order_by('-id')
+        return super().get_context_data(**kwargs)
+
+class RealtorDetailView(DetailView):
+    model = Realtor
+    template_name = 'detail_realtor.html'
+    context_object_name = 'get_realtor'
+
+class RealtorCreateView(LoginRequiredMixin, SuccessMessage, CreateView):
+    model = Realtor
+    template_name = 'add_realtor.html'
+    form_class = RealtorForm
+    success_url = reverse_lazy('add_realtor')
+    success_msg = 'Риэлтор_добавлен'
+    def get_context_data(self, **kwargs):
+        kwargs['list_realtors'] = Realtor.objects.all().order_by('-id')
+        return super().get_context_data(**kwargs)
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
+class RealtorUpdateView(LoginRequiredMixin, UpdateView):
+    model = Realtor
+    template_name = 'add_realtor.html'
+    form_class = RealtorForm
+    success_url = reverse_lazy('realtors')
+    def get_context_data(self, **kwargs):
+        kwargs['update'] = True
+        return super().get_context_data(**kwargs)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.request.user != kwargs['instance'].author:
+            return self.handle_no_permission()
+        return kwargs
+
+class RealtorDeleteView(LoginRequiredMixin, DeleteView):
+    model = Realtor
+    template_name = 'add_realtor.html'
+    success_url = reverse_lazy('add_realtor')
+    def get_context_data(self, **kwargs):
+        kwargs['update'] = True
+        return super().get_context_data(**kwargs)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.request.user != kwargs['instance'].author:
+            return self.handle_no_permission()
+        return kwargs
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.request.user !=  self.object.author:
+            return self.handle_no_permission()
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+##**********************
+##Offer classess
+
 class OffersListView(ListView):
     model = Offer
     template_name = 'offers.html'
     context_object_name = 'offers'
+    def get_context_data(self, **kwargs):
+        kwargs['list_offers'] = Offer.objects.all().order_by('-id')
+        return super().get_context_data(**kwargs)
 
 class OffersDetailView(DetailView):
     model = Offer
@@ -42,15 +176,16 @@ class OfferCreateView(LoginRequiredMixin, SuccessMessage, CreateView):
     def get_context_data(self, **kwargs):
         kwargs['list_offers'] = Offer.objects.all().order_by('-id')
         return super().get_context_data(**kwargs)
-    def form_valid(self, form):
+    def form_valid(self, form, **kwargs):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
+        self.object.price_percent = self.object.price + ((self.object.price/100) * 3)
         self.object.save()
         return super().form_valid(form)
 
 class OfferUpdateView(LoginRequiredMixin, UpdateView):
     model = Offer
-    template_name = 'add_req.html'
+    template_name = 'add_offer.html'
     form_class = OfferForm
     success_url = reverse_lazy('offers')
     def get_context_data(self, **kwargs):
@@ -81,6 +216,9 @@ class OfferDeleteView(LoginRequiredMixin, DeleteView):
         success_url = self.get_success_url()
         self.object.delete()
         return HttpResponseRedirect(success_url)
+
+#********************
+#Requirement classses
 
 class ReqsListView(ListView):
     model = Req
@@ -141,6 +279,8 @@ class ReqsDeleteView(DeleteView):
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
+#*********************
+#login/registration/logout classess
 
 class StormwindLoginView(LoginView):
     template_name = 'login.html'

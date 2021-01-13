@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import F
+
 
 class Offer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор обьявления', null=True, blank=True)
     price = models.IntegerField('Цена', null=True, blank=True)
+    price_percent = models.IntegerField(null=True, blank=True)
     address = models.CharField('Адрес', max_length=15, null=True, blank=True)
     floor = models.IntegerField('Этаж', null=True, blank=True)
     rooms = models.IntegerField('Количество комнат', null=True, blank=True)
@@ -34,3 +37,21 @@ class Req(models.Model):
         verbose_name='запрос'
         verbose_name_plural='запросы'
 
+class Client(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
+    first_name = models.CharField('Имя', max_length=15, null=True, blank=True)
+    last_name = models.CharField('Фамилия', max_length=15, null=True, blank=True)
+    middle_name = models.CharField('Отчество', max_length=15, null=True, blank=True)
+    phone = models.IntegerField('Телефон', blank=True, null=True)
+    email = models.CharField('Email', max_length=15, null=True, blank=True)
+
+class Realtor(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
+    first_name = models.CharField('Имя', max_length=15, null=True, blank=True)
+    last_name = models.CharField('Фамилия', max_length=15, null=True, blank=True)
+    middle_name = models.CharField('Отчество', max_length=15, null=True, blank=True)
+    commission = models.IntegerField('Комиссия', blank=True, null=True)
+
+class Deal(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True, blank=True)
+    req = models.ForeignKey(Req, on_delete=models.CASCADE, null=True, blank=True)

@@ -13,9 +13,12 @@
                 <li class="nav-item ms-4 me-4">
                     <a class="nav-link" href="/reqs">Requirements</a>
                 </li>
+                <li class="nav-item ms-4 me-4">
+                    <a class="nav-link" href="/clients">Clients</a>
+                </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item ms-4 me-4">
-                    <a class="nav-link">{{request.user}}, {{request.user.type}}</a>
+                    <a class="nav-link">{{request.user}}</a>
                 </li>
                 <li class="nav-item ms-4 me-4">
                     {% url 'logout_page' as url_logout_page %}

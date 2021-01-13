@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
  {% load static %}
 <html lang="ru">
 <head>
@@ -54,13 +54,10 @@
         </div>
     </nav>
     <div class="container mt-4 text_upper">
-        <h1>Адрес: {{get_offer.address}}</h1>
-        <h3 class="mt-4">Вид собственности: {{get_offer.property_type}}</h3>
-        <h5 class="mt-4">Цена: {{get_offer.price}}</h5>
-        <h5>Площадь: {{get_offer.area}}</h5>
-        <h5>Этаж: {{get_offer.floor}}</h5>
-        <h5>Количество комнат: {{get_offer.rooms}}</h5>
-        <h5>Количество этажей: {{get_offer.floor_count}}</h5>
-        <a class="rounded nav-link btn-secondary" href="/offers">Назад</a>
+        <h1>first_name {{get_realtor.first_name}}</h1>
+        <h3 class="mt-4">last_name {{get_realtor.last_name}}</h3>
+        <h5 class="mt-4">middle_name {{get_realtor.middle_name}}</h5>
+        <h5 class="mt-4">Comssion {{get_realtor.commission}}</h5>
+        <a class="rounded nav-link btn-secondary" href="/clients">back</a>
     </div>
 </body>

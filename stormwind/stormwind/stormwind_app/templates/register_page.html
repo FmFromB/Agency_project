@@ -15,14 +15,14 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="mt-4">Sign up</h1>
+        <h1 class="mt-4">Регистрация</h1>
     </div>
     <div class="container mt-4">
         <form id="update_req" method="post">
             {% csrf_token %}
             {{form}}
-            <button form="update_req" type="submit" class="btn btn-dark mt-4">Sign up</button>
+            <button form="update_req" type="submit" class="btn btn-dark mt-4">Зарегистрироваться</button>
         </form>
-        <p class="mt-4"><a href="/">Already registered? Sign in</a></p>
+        <p class="mt-4"><a href="/login_page">Уже есть учетная запись? Войти</a></p>
     </div>
 </body>

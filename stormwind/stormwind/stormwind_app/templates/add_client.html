@@ -39,55 +39,55 @@
     </div>
 </nav>
 {%block content%}
-<h1 class="mg-4">Добавление</h1>
-<p><a href="/offers">Назад</a></p>
+<h1 class="mg-4">clients</h1>
+<p><a href="/clients">Back</a></p>
 <button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Добавить предложение
+    Add client
 </button>
 {% if success %}
-<p style="color:green">Предложение добавлено</p>
+<p style="color:green">Client added</p>
 {% endif %}
 {% if message %}
 <div class="alert alert-success">
     {% for m in messages %}
-        {{m}}
+    {{m}}
     {% endfor %}
 </div>
 {% endif %}
 {% if update %}
 {% if success_update %}
-<p style="color:green">Предложение обновлено</p>
+<p style="color:green">Client updated</p>
 {% endif %}
-<h2>Редактирование предложения</h2>
+<h2>Update client</h2>
 <form id="update_offer" method="post">
     {% csrf_token %}
     {{form}}
 </form>
-<button form="update_offer" type="submit" class="btn btn-dark mt-4">Обновить</button>
+<button form="update_offer" type="submit" class="btn btn-dark mt-4">Update</button>
 {% else %}
 <table class="table table-bordered mg-4">
     <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">Адрес</th>
-            <th scope="col">Цена</th>
-            <th scope="col">Редактирование</th>
-            <th scope="col">Удаление</th>
+            <th scope="col">First name, Last name</th>
+            <th scope="col">email</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody>
-        {% for i in list_offers%}
+        {% for i in list_clients%}
         <tr>
             <th>{{i.id}}</th>
-            <td>{{i.address}} - {{i.author}}</td>
-            <td>{{i.price}}</td>
-            <td><a href="{% url 'update_offer' i.id %}">Редактировать</a></td>
+            <td>{{i.first_name}} - {{i.last_name}}</td>
+            <td>{{i.email}}</td>
+            <td><a href="{% url 'update_client' i.id %}">Update</a></td>
             <td>
-                <form id="delete_form_{{i.id}}" action="{% url 'delete_offer' i.id %}" method="post">{% csrf_token %}</form>
-                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">удалить</a>
+                <form id="delete_form_{{i.id}}" action="{% url 'delete_client' i.id %}" method="post">{% csrf_token %}</form>
+                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Delete</a>
                 <script>
                     function delete_question_{{i.id}}() {
-                        if (confirm("Вы уверены")) {
+                        if (confirm("Are you shure") {
                             document.getElementById('delete_form_{{i.id}}').submit()
                         }
                     }
@@ -102,7 +102,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Добавить предложение</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add client</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -112,8 +112,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                <button form="add_form" type="submit" class="btn btn-dark">Добавить</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button form="add_form" type="submit" class="btn btn-dark">Add</button>
             </div>
         </div>
     </div>
